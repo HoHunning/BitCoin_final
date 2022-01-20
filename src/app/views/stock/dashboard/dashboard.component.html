@@ -1,0 +1,44 @@
+<div class="row justify-content-md-center">
+    <div class="col-lg-9 ">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> Stock List
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="cool-lg-2 justify-content-md-center">Company Name</th>
+                <th class="col-lg-7 justify-content-md-center">Address</th>
+                <th class="col-lg-3 justify-content-md-center">Number of Shares</th>
+                <!-- <th>Issue Date</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <li *ngFor = "let stock of stocks" >
+                <tr class="col-lg-12">
+                    <td class="col-lg-2">{{stock.companySymbol}}</td>
+                    <td class="col-lg-7">{{stock.scAddr}}</td>
+                    <td class="col-lg-3">{{stock.stockNum}}</td>
+                <!-- <td>stock.issuDate</td> -->
+                </tr>
+            </li>
+            </tbody>
+          </table>
+          <!-- <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+            <li class="page-item active">
+              <a class="page-link" href="#">1</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          </ul> -->
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+   
+    <!--/.col-->
+</div>

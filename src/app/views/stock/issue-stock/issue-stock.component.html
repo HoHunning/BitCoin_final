@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-sm-6">
+            <div class="card">
+            <div class="card-header">
+                <div class="row justify-content-md-center">
+                    <strong center>Issue Stock</strong>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                    <label for="name">Company Name</label>
+                    <input type="text" class="form-control" id="companyName" [value] = this.companyName (input) = "this.companyName = $event.target.value" placeholder="Enter company name">
+                    </div>
+                </div>
+                </div><!--/.row-->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                        <label for="ccnumber">Origin Number of Shares</label>
+                        <input type="number" class="form-control" id="shareNumber" min = "1" [value] = "this.numOfShares" (input) = "this.numOfShares = $event.target.value" placeholder="Number of shares">
+                        </div>
+                    </div>
+                </div><!--/.row-->
+                <div class="row">
+                    <div class="col">Today's Date:  {{curDate | date:'yyyy-MM-dd'}}</div> 
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn btn-pill btn-block btn-primary" (click) = "issue()">Issue</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-pill btn-block btn-light" (click) = "clear()">Clear</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

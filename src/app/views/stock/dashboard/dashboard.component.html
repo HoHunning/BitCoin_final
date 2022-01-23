@@ -8,21 +8,22 @@
           <table class="table">
             <thead>
               <tr>
-                <th class="cool-lg-2 justify-content-md-center">Company Name</th>
-                <th class="col-lg-7 justify-content-md-center">Address</th>
-                <th class="col-lg-3 justify-content-md-center">Number of Shares</th>
+                <th scope="col">#</th>
+                <th scope="col">Company Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Number of Shares</th>
                 <!-- <th>Issue Date</th> -->
               </tr>
             </thead>
             <tbody>
-              <li *ngFor = "let stock of stocks" >
-                <tr class="col-lg-12">
-                    <td class="col-lg-2">{{stock.companySymbol}}</td>
-                    <td class="col-lg-7">{{stock.scAddr}}</td>
-                    <td class="col-lg-3">{{stock.stockNum}}</td>
+              <tr *ngFor = "let stock of stocks; index as i" >
+                
+                    <th scope="row"> {{i}} </th>
+                    <td>{{stock.companySymbol}}</td>
+                    <td>{{stock.scAddr}}</td>
+                    <td>{{stock.stockNum}}</td>
                 <!-- <td>stock.issuDate</td> -->
                 </tr>
-            </li>
             </tbody>
           </table>
           <!-- <ul class="pagination">

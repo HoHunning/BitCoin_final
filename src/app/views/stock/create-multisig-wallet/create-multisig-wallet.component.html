@@ -1,0 +1,48 @@
+<div class="card">
+    <div class="alert alert-success" *ngIf="success==true">
+        <strong>Tx hash : {{responseTx}}</strong>
+        <br>
+        <div>
+            {{response}}
+        </div>
+    </div>
+
+    <div class="card-header">
+      Create multisig wallet
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Add wallet address to multisig wallet here.</h5>
+
+      <form class="form" role="form" (ngSubmit)="createMultiSigWallet()" [formGroup]="createMultiSigWalletForm">
+
+
+        <div formArrayName="addresses">
+            <button  type="button" class="btn btn-primary" (click)="addAddress()">+ Add address</button>
+          
+            <div class="form-group">
+                <div *ngFor="let address of addresses.controls; let i=index">
+                    <!-- The repeated alias template -->
+                    <label for="address-{{ i }}">Address:</label>
+                    <input type="text" class="form-control" id="address-{{ i }}" type="text" [formControlName]="i">
+                  </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="numbersOfConfirmations-label" for="numbersOfConfirmations">Numbers of comfirmations</label>
+            <input
+              type="text"
+              class="form-control"
+              name="numbersOfConfirmations"
+              id="numbersOfConfirmations"
+              placeholder="Numbers of comfirmations"
+              formControlName="numbersOfConfirmations"
+            />
+          </div>
+
+        <button type="submit" class="btn btn-primary">Create Multisig Wallet!</button>
+      </form>
+      <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a> -->
+    </div>
+  </div>

@@ -1,0 +1,164 @@
+
+<div *ngIf="multisigWalletAddress === null">
+    <span>Connect multisig wallet bellow:</span>
+    <p>Example address: 0x9B0d6039A33b4f2B9187dBFaaeD4B25eaA070F33</p>
+
+    <form class="form" role="form" (ngSubmit)="connectToMultiSigWallet()" [formGroup]="getMultiSigWalletForm">
+        <div class="form-group">
+          <label class="multisigWalletAddress-label" for="multisigWalletAddress">Multisig Wallet Address</label>
+          <input
+            type="text"
+            class="form-control"
+            name="multisigWalletAddress"
+            id="multisigWalletAddress"
+            placeholder="multisigWalletAddress"
+            formControlName="address"
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary">connect</button>
+      </form>
+
+</div>
+
+<div *ngIf="multisigWalletAddress !== null" >
+
+  <div class="card" style="width: 40rem;">
+    <div class="card-body">
+      <h5 class="card-title">multisig wallet detail</h5>
+      <h6 class="card-subtitle mb-2 text-muted">address : {{multisigWalletAddress}}</h6>
+
+      <form class="form" role="form" (ngSubmit)="depositeToMultiSigWallet()" [formGroup]="depositeToMultiSigWalletForm">
+
+        <div class="form-group">
+          <label class="value-label" for="value">Multisig Wallet Address</label>
+          <input
+            type="text"
+            class="form-control"
+            name="value"
+            id="value"
+            placeholder="deposite yout MATIC"
+            formControlName="value"
+          />
+        </div>
+
+        <div class="row">
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary">deposite</button>
+          </div>
+
+        </div>
+        <br>
+        <div class="row">
+          <div class="col">
+            <div class="btn-group" role="group" aria-label="opList">
+              <button
+              type="button" class="btn btn-secondary"
+              (click)="deployTokenContract()">
+              <span>Deploy token contract</span>
+              </button>
+              <button type="button" class="btn btn btn-dark" (click)="deployTokenContract()">
+                <span>Issue</span>
+              </button>
+              <button type="button" class="btn btn-info" (click)="deployTokenContract()">
+                <span>Burn</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </form>
+
+    <br>
+
+        <label>Balance : {{balance}}</label>
+        <br>
+        <span>Owners:</span>
+
+
+      <ul class="list-group list-group-flush">
+        <li  class="list-group-item" *ngFor="let item of owners">{{ item }}</li>
+      </ul>
+
+      <span>Confirmations required : {{confirmationsRequired}}</span>
+
+      <br>
+
+      <span>Transactions :</span>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let item of transactions">
+          <div class="row">
+            <div class="col-2">
+              <span>Tx Index:</span>
+            </div>
+            <div class="col-10">
+              {{item.txIndex}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-2">
+              <span>To:</span>
+            </div>
+            <div class="col-10">
+              {{item.to}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-2">
+              <span>Value:</span>
+            </div>
+            <div class="col-10">
+              {{item.value}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-2">
+              <span>Data:</span>
+            </div>
+            <div class="col-10">
+              {{item.data}}
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-2">
+              <span># of Cons</span>
+            </div>
+            <div class="col-10">
+              {{item.numConfirmations}}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-2">
+              <span>Executed:</span>
+            </div>
+            <div class="col-10">
+              {{item.executed}}
+            </div>
+            
+          </div>
+          <div *ngIf="item.executed==false" class="row">
+            <div class="col-3" *ngIf="item.isConfirmedByCurrentAccount==false">
+              <button class="btn btn-success" (click)="confirmTx(item.txIndex)">
+                Confirm
+              </button>
+            </div>
+            <div class="col-3" *ngIf="item.isConfirmedByCurrentAccount==true">
+              <button class="btn btn-warning" (click)="revokeTx(item.txIndex)">Revoke</button>
+
+            </div>
+            <div class="col-3" *ngIf="canExecute[item.txIndex]==true">
+              <button class="btn btn-success" (click)="executeTx(item.txIndex)">Execute</button>
+            </div>
+          </div>
+          
+          
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</div>
